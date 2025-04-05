@@ -1,7 +1,7 @@
-# Cheating Surveillance System
+# Real Time Cheating Detection System
 
 ## Overview
-The **Cheating Surveillance System** is designed to detect cheating during Online Interviews/Exams by monitoring head and pupil movements and identifying unauthorized mobile phone usage. This system integrates facial landmark detection with **Shape Predictor 68** and object detection using **YOLO**, trained on a cellphone detection dataset from Roboflow.
+The **Real Time Cheating Detection System** is designed to detect cheating during Online Interviews/Exams by monitoring head and pupil movements and identifying unauthorized mobile phone usage. This system integrates facial landmark detection with **Shape Predictor 68** and object detection using **YOLO**, trained on a cellphone detection dataset from Roboflow.
 
 ## Features
 - **Head and Pupil Movement Detection**: Uses **dlib's Shape Predictor 68** to track facial landmarks and detect suspicious gaze patterns.

@@ -100,31 +100,31 @@ def process_head_pose(frame, current_calibrated_angles=None):
         if current_calibrated_angles is None:
             return frame, (pitch, yaw, roll)
 
-        # Use calibrated angles for head pose detection
         if current_calibrated_angles is not None:
             print(f"calibrated_angles received: {current_calibrated_angles}")
-            pitch_offset, yaw_offset, roll_offset = current_calibrated_angles
-            PITCH_THRESHOLD = 8   # Reduced sensitivity
-            YAW_THRESHOLD = 12
-            ROLL_THRESHOLD = 5
+        
+        pitch_offset, yaw_offset, roll_offset = current_calibrated_angles
+        PITCH_THRESHOLD = 8   # Reduced sensitivity
+        YAW_THRESHOLD = 12
+        ROLL_THRESHOLD = 5
 
             # Determine head direction
-            if abs(yaw - yaw_offset) <= YAW_THRESHOLD and abs(pitch - pitch_offset) <= PITCH_THRESHOLD and abs(roll - roll_offset) <= ROLL_THRESHOLD:
-                current_state = "Looking at Screen"
-            elif yaw < yaw_offset - 15:
-                current_state = "Looking Left"
-            elif yaw > yaw_offset + 15:
-                current_state = "Looking Right"
-            elif pitch > pitch_offset + 10:
-                current_state = "Looking Up"
-            elif pitch < pitch_offset - 10:
-                current_state = "Looking Down"
-            elif abs(roll - roll_offset) > 7:
-                current_state = "Tilted"
-            else:
-                current_state = previous_state
+        if abs(yaw - yaw_offset) <= YAW_THRESHOLD and abs(pitch - pitch_offset) <= PITCH_THRESHOLD and abs(roll - roll_offset) <= ROLL_THRESHOLD:
+            current_state = "Looking at Screen"
+        elif yaw < yaw_offset - 20:
+            current_state = "Looking Left"
+        elif yaw > yaw_offset + 20:
+            current_state = "Looking Right"
+        elif pitch > pitch_offset + 10:
+            current_state = "Looking Up"
+        elif pitch < pitch_offset - 10:
+            current_state = "Looking Down"
+        elif abs(roll - roll_offset) > 7:
+            current_state = "Tilted"
+        else:
+            current_state = previous_state
 
-            previous_state = current_state
-            head_direction = current_state
+        previous_state = current_state
+        head_direction = current_state
 
     return frame, head_direction

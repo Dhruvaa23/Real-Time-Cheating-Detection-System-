@@ -1,5 +1,5 @@
 import cv2
-import dlib
+
 import time
 import os
 import csv
@@ -8,7 +8,7 @@ from eye_movement import process_eye_movement
 from head_pose import process_head_pose
 from mobile_detection import process_mobile_detection
 
-# Initialize webcam
+# Initialize webcamqqqq
 cap = cv2.VideoCapture(0)
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
@@ -154,7 +154,7 @@ while True:
     if gaze_direction != "Looking Center" and gaze_direction != "Error":
         if eye_misalignment_start_time is None:
             eye_misalignment_start_time = time.time()
-        elif time.time() - eye_misalignment_start_time >= 2:
+        elif time.time() - eye_misalignment_start_time >= 3:
             filename = os.path.join(log_dir, f"eye_{gaze_direction}_{int(time.time())}.png")
             cv2.imwrite(filename, frame)
             eye_misalignment_start_time = None
